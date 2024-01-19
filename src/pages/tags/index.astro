@@ -7,7 +7,7 @@ const allTags = getUniqueTagsWithCount(allPosts);
 
 const meta = {
 	title: "All Tags",
-	description: "A list of all the topics I've written about in my posts",
+	description: "a list of all the topics I've written about in my registers",
 };
 ---
 
@@ -18,9 +18,9 @@ const meta = {
 			allTags.map(([tag, val]) => (
 				<li class="flex items-center gap-x-2">
 					<a
-						class="cactus-link inline-block"
+						class="inline-block no-underline hover:underline"
 						href={`/tags/${tag}/`}
-						title={`View posts with the tag: ${tag}`}
+						title={`View registers with the tag: ${tag}`}
 						data-astro-prefetch
 					>
 						&#35;{tag}

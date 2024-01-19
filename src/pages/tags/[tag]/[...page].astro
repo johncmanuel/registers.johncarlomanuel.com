@@ -29,7 +29,7 @@ const { tag } = Astro.params;
 
 const meta = {
 	title: `Tag: ${tag}`,
-	description: `View all posts with the tag - ${tag}`,
+	description: `View all registers with the tag - ${tag}`,
 };
 
 const paginationProps = {
@@ -54,7 +54,7 @@ const paginationProps = {
 		<span class="me-3 ms-2">→</span>
 		<span class="text-xl">#{tag}</span>
 	</h1>
-	<section aria-label="Blog post list">
+	<section aria-label="Register list">
 		<ul class="space-y-8">
 			{
 				page.data.map((p) => (

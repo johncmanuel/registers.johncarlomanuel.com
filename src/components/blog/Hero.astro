@@ -72,7 +72,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 			{data.tags.map((tag, i) => (
 				<>
 					<a
-						class="cactus-link inline-block before:content-['#']"
+						class="inline-block no-underline before:content-['#'] hover:underline"
 						aria-label={`View more blogs with the tag ${tag}`}
 						href={`/tags/${tag}/`}
 						data-pagefind-filter="tag"

@@ -21,7 +21,7 @@ interface Props {
 const { page, uniqueTags } = Astro.props;
 
 const meta = {
-	title: "Posts",
+	title: "Registers",
 	description: "stuff that i felt like writing about",
 };
 
@@ -29,20 +29,20 @@ const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
 			url: page.url.prev,
-			text: `← Previous Posts`,
+			text: `← Previous Registers`,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
 			url: page.url.next,
-			text: `Next Posts →`,
+			text: `Next Registers →`,
 		},
 	}),
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-6">Posts</h1>
+	<h1 class="title mb-6">Registers</h1>
 	<div class="grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8">
 		<section aria-label="Blog post list">
 			<ul class="space-y-8 text-start">
