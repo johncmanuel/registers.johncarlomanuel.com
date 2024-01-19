@@ -2,21 +2,6 @@
 
 Astro Cactus is a simple opinionated starter built with the Astro framework. Use it to create an easy-to-use blog or website.
 
-## Table Of Contents
-
-1. [Key Features](#key-features)
-2. [Demo](#demo-💻)
-3. [Quick start](#quick-start)
-4. [Preview](#preview)
-5. [Commands](#commands)
-6. [Configure](#configure)
-7. [Adding Posts](#adding-posts)
-   - [Frontmatter](#frontmatter)
-8. [Pagefind search](#pagefind-search)
-9. [Analytics](#analytics)
-10. [Deploy](#deploy)
-11. [Acknowledgment](#acknowledgment)
-
 ## Key Features
 
 - Astro v4 Fast 🚀
@@ -135,10 +120,6 @@ import { GoogleAnalytics } from "astro-google-analytics";
 [Astro docs](https://docs.astro.build/en/guides/deploy/) has a great section and breakdown of how to deploy your own Astro site on various platforms and their idiosyncrasies.
 
 By default the site will be built (see [Commands](#commands) section above) to a `/dist` directory.
-
-## Acknowledgment
-
-This theme was inspired by [Hexo Theme Cactus](https://github.com/probberechts/hexo-theme-cactus)
 
 ## License
 
