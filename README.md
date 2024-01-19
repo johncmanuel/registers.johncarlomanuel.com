@@ -1,4 +1,4 @@
-# blog.johncarlomanuel.com
+# registers.johncarlomanuel.com
 
 Astro Cactus is a simple opinionated starter built with the Astro framework. Use it to create an easy-to-use blog or website.
 

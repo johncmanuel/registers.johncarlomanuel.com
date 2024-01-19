@@ -1,5 +1,5 @@
 {
-	"name": "blog-johncarlomanuel-com",
+	"name": "registers-johncarlomanuel-com",
 	"version": "3.6.1",
 	"scripts": {
 		"dev": "astro dev",
