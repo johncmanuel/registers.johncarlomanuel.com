@@ -3,7 +3,7 @@ title: "My Discord Bot Architecture"
 description: "An overview of the architecture of my discord
   bot and the motivation behind it."
 publishDate: "2023-10-03T04:48:04.193Z"
-tags: ["discord-bot", "python", "firebase"]
+tags: ["technical", "discord-bot", "python", "firebase"]
 ---
 
 Sometime in early 2021 after most, if not all of the world shut down because of COVID, I spent a hefty of my time during quarantine playing video games with my friends. The main platform we use to chat and send the funniest memes is Discord.
