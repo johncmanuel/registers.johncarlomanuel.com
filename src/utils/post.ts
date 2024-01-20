@@ -8,6 +8,11 @@ export async function getAllPosts() {
 	});
 }
 
+// Source: https://stackoverflow.com/a/42369035
+export function getHexStr(value: number) {
+	return `0x${value.toString(16).toUpperCase().padStart(4, "0")}`;
+}
+
 export function sortMDByDate(posts: Array<CollectionEntry<"post">>) {
 	return posts.sort((a, b) => {
 		const aDate = new Date(a.data.updatedDate ?? a.data.publishDate).valueOf();
