@@ -47,10 +47,9 @@ const paginationProps = {
 		<section aria-label="Blog post list">
 			<ul class="space-y-8 text-start">
 				{
-					page.data.map((p, idx) => (
+					page.data.map((p) => (
 						<li class="flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full">
-							{/* @ts-ignore*/}
-							<PostPreview post={p} index={idx} as="h2" withDesc />
+							<PostPreview post={p} as="h2" withDesc />
 						</li>
 					))
 				}

@@ -2,14 +2,13 @@
 import type { CollectionEntry } from "astro:content";
 import type { HTMLTag, Polymorphic } from "astro/types";
 import FormattedDate from "../FormattedDate.astro";
-import { getHexStr } from "@/utils";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 	post: CollectionEntry<"post">;
 	withDesc?: boolean;
 };
 
-const { post, index, as: Tag = "div", withDesc = false } = Astro.props;
+const { post, as: Tag = "div", withDesc = false } = Astro.props;
 const postDate = post.data.updatedDate ?? post.data.publishDate;
 ---
 
@@ -24,8 +23,4 @@ const postDate = post.data.updatedDate ?? post.data.publishDate;
 		{post.data.title}
 	</a>
 </Tag>
-{
-	withDesc && (
-		<p class="line-clamp-3 block text-base">{`R[${getHexStr(index)}]: ${post.data.description}`}</p>
-	)
-}
+{withDesc && <p class="line-clamp-3 block text-base">{post.data.description}</p>}
