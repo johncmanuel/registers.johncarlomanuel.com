@@ -37,4 +37,8 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 		title: "back to main site",
 		path: "https://johncarlomanuel.com/",
 	},
+	{
+		title: "rss",
+		path: "/rss.xml"
+	}
 ];
