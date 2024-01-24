@@ -21,7 +21,7 @@ I'll teach you how to setup SSH for both Windows and WSL2 (version 2 of WSL).
 2. [Install WSL2 (any distro will work)](https://learn.microsoft.com/en-us/windows/wsl/install)
 3. Familiarity with basic Git commands and concepts.
 
-If you have an existing SSH key used for GitHub, you can [skip to the second part of the guide](#sharing-ssh-keys-with-windows-on-wsl2).
+If you have an existing SSH key used for GitHub, you can [skip to the second part of the guide](#sharing-ssh-key-with-windows-on-wsl2).
 
 ## Setting up SSH on Windows
 
@@ -45,7 +45,7 @@ The following output will be printed:
 
 ```bat
 > Generating public/private <algorithm used> key pair.
-> Enter file in which to save the key (/c/Users/YOU/.ssh/id_<algorithm used>):
+> Enter file in which to save the key (/c/Users/<username>/.ssh/id_<algorithm used>):
 ```
 
 Use the default file location by simply pressing **Enter**.
@@ -57,7 +57,7 @@ Then, the following will ask you for a **passphrase**. You can opt to not use on
 > Enter same passphrase again: <your passphrase>
 ```
 
-Now, using PowerShell with admin privileges, add the SSH key pair to your ssh-agent.
+Now, using PowerShell with admin privileges, add the SSH key pair to your ssh-agent. This will start a service in your computer called **ssh-agent**.
 
 ```bat
 Get-Service -Name ssh-agent | Set-Service -StartupType Manual
@@ -66,7 +66,7 @@ Start-Service ssh-agent
 
 You may close PowerShell.
 
-Next, in another terminal add your SSH **private** key to the ssh-agent.
+Next, in another terminal of your choice, add your SSH **private** key to the ssh-agent.
 
 ```bat
 ssh-add C:/Users/<name of your user folder>/.ssh/id_<algorithm used>
@@ -76,12 +76,92 @@ ssh-add C:/Users/<name of your user folder>/.ssh/id_<algorithm used>
 
 To ensure that your GitHub account uses the SSH key you generated, we will add the public key of the pair to your GitHub account.
 
+First, open PowerShell and copy the SSH public key to your clipboard:
+
+```bash
+cat ~/.ssh/id_<algorithm used>.pub | clip
+```
+
+On GitHub, click on your profile picture and click **Settings**.
+
+![Settings link on GitHub](./0.png "Settings are at the very bottom.")
+
+- Under the _Access_ section, look for **SSH and GPG keys**.
+- Click **New SSH Key** or **Add SSH Key**.
+- Add a label for your key under the **Title** field.
+- For **Key type**, click **Authentication Key**.
+- Paste your SSH public key in the **Key** field.
+- Click **Add SSH Key**
+
+Your SSH public key is now securely stored on GitHub!
+
 ## Sharing SSH Key with Windows on WSL2
 
-Open a terminal in WSL.
+Now that the SSH key in Windows is generated and it's currently being used by GitHub, it's time to reuse the key in a WSL2 environment!
+
+Open a terminal in WSL (either PowerShell or Command Prompt) using the command below:
+
+```bat
+wsl
+```
+
+Then copy over the SSH key from Windows to WSL:
+
+```bash
+cp -r /mnt/c/Users/<username>/.ssh ~/.ssh
+```
+
+Adjust the permissions on the recently copied SSH key:
+
+```bash
+chmod 600 ~/.ssh/id_<algorithm used>
+```
+
+This command means **only the owner** can read/write the file.
+
+In order to avoid entering the passphrase for your SSH key every time you wish to change the remote origin, use [keychain](https://www.funtoo.org/Funtoo:Keychain):
+
+```bash
+sudo apt install keychain
+eval ``keychain --eval --agents ssh id_<algorithm used>
+```
+
+Now test the SSH authentication using the following command:
+
+```bash
+ssh -T git@github.com
+```
+
+It may trigger warnings like these:
+
+```text
+> The authenticity of host 'github.com (IP ADDRESS)' can't be established.
+> <algorithm used> key fingerprint is <some very long fingerprint here>.
+> Are you sure you want to continue connecting (yes/no)?
+```
+
+You may want to reference the below to see if GitHub's public key fingerprints match the appropiate fingerprint that was printed:
+
+- `SHA256:uNiVztksCsDhcc0u9e8BujQXVUpKZIDTMczCvj3tD2s (RSA)`
+- `SHA256:br9IjFspm1vxR3iA35FWE+4VTyz1hYVLIE2t1/CeyWQ (DSA - deprecated)`
+- `SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM (ECDSA)`
+- `SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU (Ed25519)`
+
+> Source: <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints>.
+>
+> Double check for the latest fingerprints there just to be safe.
+
+If it matches, you can type **yes**. Once successful, GitHub will authenticate you. You're done!
+
+## Conclusion
+
+Congratulations! You have successfully set up SSH for both Windows and WSL2. You can now safely authenticate with GitHub without having to use your username and password.
+
+Happy coding! :)
 
 ## References
 
 1. [Adding a new SSH key to your GitHub account - GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 2. [Sharing SSH keys between Windows and WSL 2 - Burke Holland, Microsoft DevBlogs](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 3. [Generating a new SSH key and adding it to the ssh-agent - GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+4. [Testing your SSH connection - GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
