@@ -1,6 +1,14 @@
-MIT License
+## Blog Posts
 
-Copyright (c) 2024 John Carlo Manuel
+All files under `src/content/post` are licensed under [CC BY-NC-SA 4.0 Deed](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
+
+## Other Files
+
+All other files are licensed under MIT.
+
+## MIT License
+
+Copyright (c) 2024 John Carlo Manuel,
 Copyright (c) 2022 Chris Williams
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
