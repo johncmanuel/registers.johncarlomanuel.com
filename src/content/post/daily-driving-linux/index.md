@@ -53,7 +53,7 @@ That's when I learned about Fedora, a semi-rolling release distro, which is what
 
 ### The Good
 
-As of writing this, it's been over a month since I made the switch. And honestly, despite some of the bugs and workarounds I had to make, I'm very content with my workflow on Linux.
+As of writing this, it's been about three months since I made the switch. And honestly, despite some of the bugs and workarounds I had to make, I'm very content with my workflow on Linux.
 
 My workflow on my laptop usually consists of:
 
